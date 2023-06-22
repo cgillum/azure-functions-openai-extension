@@ -16,7 +16,7 @@ namespace WebJobs.Extensions.OpenAI;
 partial class OpenAIExtension
 {
     class EmbeddingsConverter :
-        IAsyncConverter<EmbeddingsAttribute, EmbeddingCreateResponse>,
+        IAsyncConverter<EmbeddingsAttribute, EmbeddingsContext>,
         IAsyncConverter<EmbeddingsAttribute, string>
     {
         readonly IOpenAIService service;
@@ -28,7 +28,7 @@ partial class OpenAIExtension
             this.logger = logger ?? throw new ArgumentNullException(nameof(logger));
         }
 
-        Task<EmbeddingCreateResponse> IAsyncConverter<EmbeddingsAttribute, EmbeddingCreateResponse>.ConvertAsync(
+        Task<EmbeddingsContext> IAsyncConverter<EmbeddingsAttribute, EmbeddingsContext>.ConvertAsync(
             EmbeddingsAttribute attribute,
             CancellationToken cancellationToken)
         {
@@ -39,11 +39,11 @@ partial class OpenAIExtension
             EmbeddingsAttribute input,
             CancellationToken cancellationToken)
         {
-            EmbeddingCreateResponse response = await this.ConvertCoreAsync(input, cancellationToken);
+            EmbeddingsContext response = await this.ConvertCoreAsync(input, cancellationToken);
             return JsonSerializer.Serialize(response);
         }
 
-        async Task<EmbeddingCreateResponse> ConvertCoreAsync(
+        async Task<EmbeddingsContext> ConvertCoreAsync(
             EmbeddingsAttribute attribute,
             CancellationToken cancellationToken)
         {
@@ -53,7 +53,14 @@ partial class OpenAIExtension
                 request,
                 cancellationToken);
             this.logger.LogInformation("Received OpenAI embeddings response: {response}", response);
-            return response;
+
+            if (attribute.ThrowOnError && response.Error is not null)
+            {
+                throw new InvalidOperationException(
+                    $"OpenAI returned an error of type '{response.Error.Type}': {response.Error.Message}");
+            }
+
+            return new EmbeddingsContext(request, response);
         }
     }
 }

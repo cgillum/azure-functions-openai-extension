@@ -58,7 +58,8 @@ class CompletionCreateResponseConverter :
 
         if (attribute.ThrowOnError && response.Error is not null)
         {
-            throw new InvalidOperationException($"OpenAI returned an error of type '{response.Error.Type}': {response.Error.Message}");
+            throw new InvalidOperationException(
+                $"OpenAI returned an error of type '{response.Error.Type}': {response.Error.Message}");
         }
 
         return response;

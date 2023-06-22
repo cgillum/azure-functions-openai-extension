@@ -30,7 +30,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "nodejs", "nodejs", "{732528
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "extensions", "samples\nodejs\extensions.csproj", "{A553833C-DDBB-4908-9B57-5CB8AE5E8B4B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebJobs.Extensions.OpenAI.DurableTask", "src\WebJobs.Extensions.OpenAI.DurableTask\WebJobs.Extensions.OpenAI.DurableTask.csproj", "{73B2BB3B-F135-46EE-966A-7568B567B692}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebJobs.Extensions.OpenAI.DurableTask", "src\WebJobs.Extensions.OpenAI.DurableTask\WebJobs.Extensions.OpenAI.DurableTask.csproj", "{73B2BB3B-F135-46EE-966A-7568B567B692}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

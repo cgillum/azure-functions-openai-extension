@@ -33,7 +33,7 @@ partial class OpenAIExtension : IExtensionConfigProvider
         // Embeddings input binding support
         EmbeddingsConverter embeddingsConverter = new(this.service, this.logger);
         var embeddingsRule = context.AddBindingRule<EmbeddingsAttribute>();
-        embeddingsRule.BindToInput<EmbeddingCreateResponse>(embeddingsConverter);
+        embeddingsRule.BindToInput<EmbeddingsContext>(embeddingsConverter);
         embeddingsRule.BindToInput<string>(embeddingsConverter);
 
         // OpenAI service input binding support (NOTE: This may be removed in a future version.)
