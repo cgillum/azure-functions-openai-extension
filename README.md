@@ -13,8 +13,7 @@ The following NuGet packages are available as part of this project.
 
 [![NuGet](https://img.shields.io/nuget/v/CGillum.WebJobs.Extensions.OpenAI.svg?label=webjobs.extensions.openai)](https://www.nuget.org/packages/CGillum.WebJobs.Extensions.OpenAI)<br/>
 [![NuGet](https://img.shields.io/nuget/v/CGillum.WebJobs.Extensions.OpenAI.DurableTask.svg?label=webjobs.extensions.openai.durabletask)](https://www.nuget.org/packages/CGillum.WebJobs.Extensions.OpenAI.DurableTask)<br/>
-[![NuGet](https://img.shields.io/nuget/v/CGillum.WebJobs.Extensions.OpenAI.Kusto.svg?label=webjobs.extensions.openai.kusto)](https://www.nuget.org/packages/CGillum.WebJobs.Extensions.OpenAI.Kusto)<br/>
-
+[![NuGet](https://img.shields.io/nuget/v/CGillum.WebJobs.Extensions.OpenAI.Kusto.svg?label=webjobs.extensions.openai.kusto)](https://www.nuget.org/packages/CGillum.WebJobs.Extensions.OpenAI.Kusto)
 
 ## Requirements
 
