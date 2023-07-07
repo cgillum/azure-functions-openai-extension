@@ -1,6 +1,6 @@
 # Azure Functions bindings for OpenAI's GPT engine
 
-[![MIT](https://img.shields.io/github/license/cgillum/azure-functions-openai-extension.svg)](LICENSE)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Build](https://github.com/cgillum/azure-functions-openai-extension/actions/workflows/build.yml/badge.svg)](https://github.com/cgillum/azure-functions-openai-extension/actions/workflows/build.yml)
 
 This is an **experimental** project that adds support for [OpenAI](https://platform.openai.com/) GPT-3 bindings in [Azure Functions](https://azure.microsoft.com/products/functions/). It is not currently endorsed or supported by Microsoft.
