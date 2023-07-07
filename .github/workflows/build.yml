@@ -33,5 +33,5 @@ jobs:
     - name: Upload
       uses: actions/upload-artifact@v3
       with:
-        name: pkg
-        path: artifacts
+        name: nuget-packages
+        path: artifacts/*.nupkg

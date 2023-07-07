@@ -8,12 +8,12 @@
     <PackageProjectUrl>$(RepositoryUrl)</PackageProjectUrl>
     <PackageReleaseNotes>$(RepositoryUrl)/releases/</PackageReleaseNotes>
     <PackageReadmeFile>README.md</PackageReadmeFile>
+    <ContinuousIntegrationBuild Condition="'$(GITHUB_ACTIONS)' == 'true'">true</ContinuousIntegrationBuild>
     <DebugType>embedded</DebugType>
     <PublishRepositoryUrl>true</PublishRepositoryUrl>
     <EmbedUntrackedSources>true</EmbedUntrackedSources>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Authors>Chris Gillum</Authors>
-    <Company>Microsoft</Company>
   </PropertyGroup>
 
     <!-- Version settings: https://andrewlock.net/version-vs-versionsuffix-vs-packageversion-what-do-they-all-mean/ -->
