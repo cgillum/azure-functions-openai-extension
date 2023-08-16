@@ -41,9 +41,10 @@ class ChatBotBindingConverter :
         ChatBotQueryAttribute input,
         CancellationToken cancellationToken)
     {
-        if (!DateTime.TryParse(input.TimestampUtc, out DateTime timestamp))
+        string timestampString = Uri.UnescapeDataString(input.TimestampUtc);
+        if (!DateTime.TryParse(timestampString, out DateTime timestamp))
         {
-            throw new ArgumentException($"Invalid timestamp '{input.TimestampUtc}'");
+            throw new ArgumentException($"Invalid timestamp '{timestampString}'");
         }
 
         if (timestamp.Kind != DateTimeKind.Utc)

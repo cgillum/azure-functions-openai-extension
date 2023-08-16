@@ -79,7 +79,7 @@ public class Chat
             while (!cts.IsCancellationRequested)
             {
                 using HttpResponseMessage stateResponse = await client.GetAsync(
-                    requestUri: $"{baseAddress}/api/chats/{chatId}?timestampUTC={timestamp:o}");
+                    requestUri: $"{baseAddress}/api/chats/{chatId}?timestampUTC={Uri.EscapeDataString(timestamp.ToString("o"))}");
                 Assert.Equal(HttpStatusCode.OK, stateResponse.StatusCode);
                 Assert.StartsWith("application/json", stateResponse.Content.Headers.ContentType?.MediaType);
 
@@ -125,7 +125,7 @@ public class Chat
                     Assert.Contains(expectedContent, messageArray!.Last()!["content"]?.GetValue<string>());
 
                     // Update the timestamp so that the next fetch only gets the unread messages
-                    timestamp = DateTime.Parse(json["lastUpdatedAt"]!.GetValue<string>(), null, DateTimeStyles.AssumeUniversal);
+                    timestamp = DateTime.Parse(json["lastUpdatedAt"]!.GetValue<string>(), null, DateTimeStyles.RoundtripKind);
                     break;
                 }
 
