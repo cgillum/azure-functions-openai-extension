@@ -43,6 +43,9 @@ jobs:
       run: sleep 10s
     - name: E2E Test - Chat Bot Sample
       run: dotnet test --configuration $config --no-build --verbosity normal
+    - name: Print Docker Logs - Chat Bot Sample
+      run: docker logs openai-func-sample-csharp-inproc
+      if: always()
     - name: Pack
       run: dotnet pack --configuration $config --no-build --output artifacts
     - name: Upload
