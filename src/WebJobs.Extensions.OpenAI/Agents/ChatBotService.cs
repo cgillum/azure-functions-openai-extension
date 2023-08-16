@@ -81,14 +81,14 @@ public class DefaultChatBotService : IChatBotService
         if (!entityState.EntityExists)
         {
             this.logger.LogInformation("Entity does not exist with ID '{Id}'", entityId);
-            return new ChatBotState(id, false, ChatBotStatus.Uninitialized, default, default, Array.Empty<ChatMessage>());
+            return new ChatBotState(id, false, ChatBotStatus.Uninitialized, default, default, 0, Array.Empty<ChatMessage>());
         }
 
         ChatBotRuntimeState? runtimeState = entityState.EntityState?.State;
         if (runtimeState == null)
         {
             this.logger.LogWarning("Chat bot state is null for entity '{Id}'", entityId);
-            return new ChatBotState(id, false, ChatBotStatus.Uninitialized, default, default, Array.Empty<ChatMessage>());
+            return new ChatBotState(id, false, ChatBotStatus.Uninitialized, default, default, 0, Array.Empty<ChatMessage>());
         }
 
         IList<MessageRecord>? allChatMessages = runtimeState.ChatMessages;
@@ -108,8 +108,9 @@ public class DefaultChatBotService : IChatBotService
             id,
             true,
             runtimeState.Status,
-            runtimeState.ChatMessages.First().Timestamp,
-            runtimeState.ChatMessages.Last().Timestamp,
+            allChatMessages.First().Timestamp,
+            allChatMessages.Last().Timestamp,
+            allChatMessages.Count,
             filteredMessages);
         return state;
     }

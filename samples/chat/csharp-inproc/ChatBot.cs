@@ -20,7 +20,7 @@ public static class ChatBot
 
     [FunctionName(nameof(CreateChatBot))]
     public static async Task<IActionResult> CreateChatBot(
-        [HttpTrigger(AuthorizationLevel.Function, "put", Route = "chats/{chatId}")] CreateRequest req,
+        [HttpTrigger(AuthorizationLevel.Anonymous , "put", Route = "chats/{chatId}")] CreateRequest req,
         string chatId,
         [ChatBotCreate] IAsyncCollector<ChatBotCreateRequest> createRequests)
     {
@@ -31,7 +31,7 @@ public static class ChatBot
 
     [FunctionName(nameof(GetChatState))]
     public static ChatBotState GetChatState(
-        [HttpTrigger(AuthorizationLevel.Function, "get", Route = "chats/{chatId}")] HttpRequest req,
+        [HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "chats/{chatId}")] HttpRequest req,
         string chatId,
         [ChatBotQuery("{chatId}", TimestampUtc = "{Query.timestampUTC}")] ChatBotState state)
     {
@@ -40,7 +40,7 @@ public static class ChatBot
 
     [FunctionName(nameof(PostUserResponse))]
     public static async Task<IActionResult> PostUserResponse(
-        [HttpTrigger(AuthorizationLevel.Function, "post", Route = "chats/{chatId}")] HttpRequest req,
+        [HttpTrigger(AuthorizationLevel.Anonymous, "post", Route = "chats/{chatId}")] HttpRequest req,
         string chatId,
         [ChatBotPost("{chatId}")] ICollector<ChatBotPostRequest> newMessages)
     {

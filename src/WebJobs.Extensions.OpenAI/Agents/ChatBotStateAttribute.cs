@@ -37,4 +37,5 @@ public record ChatBotState(
     ChatBotStatus Status,
     DateTime CreatedAt,
     DateTime LastUpdatedAt,
+    int TotalMessages,
     IReadOnlyList<ChatMessage> RecentMessages);
