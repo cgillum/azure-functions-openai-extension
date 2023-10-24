@@ -4,8 +4,8 @@
 using System;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Extensions.DependencyInjection;
-using OpenAI.GPT3;
-using OpenAI.GPT3.Extensions;
+using OpenAI;
+using OpenAI.Extensions;
 using WebJobs.Extensions.OpenAI.Agents;
 using WebJobs.Extensions.OpenAI.Search;
 

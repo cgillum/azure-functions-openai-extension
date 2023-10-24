@@ -15,6 +15,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "misc", "misc", "{680E7714-A
 	ProjectSection(SolutionItems) = preProject
 		.editorconfig = .editorconfig
 		.gitignore = .gitignore
+		CHANGELOG.md = CHANGELOG.md
 		README.md = README.md
 	EndProjectSection
 EndProject
@@ -28,7 +29,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChatBotSample", "samples\ch
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{B99948E2-9853-4D9C-B784-19C2503CDA8B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SampleValidation", "tests\SampleValidation\SampleValidation.csproj", "{B0F02F06-9124-4A91-9685-824C55E698BD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SampleValidation", "tests\SampleValidation\SampleValidation.csproj", "{B0F02F06-9124-4A91-9685-824C55E698BD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
