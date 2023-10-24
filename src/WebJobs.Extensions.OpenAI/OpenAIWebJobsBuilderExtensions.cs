@@ -36,7 +36,9 @@ public static class OpenAIWebJobsBuilderExtensions
             settings.ApiKey = Environment.GetEnvironmentVariable("OPENAI_API_KEY");
             settings.Organization = Environment.GetEnvironmentVariable("OPENAI_ORGANIZATION_ID");
 
-            if (settings.ApiKey == null)
+            string? azureOpenAIEndpoint = Environment.GetEnvironmentVariable("AZURE_OPENAI_ENDPOINT");
+
+            if (settings.ApiKey == null || !string.IsNullOrEmpty(azureOpenAIEndpoint))
             {
                 // Try Azure connection, which is preferred for privacy
                 settings.ApiKey = Environment.GetEnvironmentVariable("AZURE_OPENAI_KEY")!;
@@ -47,10 +49,10 @@ public static class OpenAIWebJobsBuilderExtensions
                 }
                 else
                 {
-                    settings.BaseDomain = Environment.GetEnvironmentVariable("AZURE_OPENAI_ENDPOINT")!;
                     settings.ProviderType = ProviderType.Azure;
+                    settings.BaseDomain = Environment.GetEnvironmentVariable("AZURE_OPENAI_ENDPOINT")!;
                     settings.ApiVersion = Environment.GetEnvironmentVariable("OPENAI_API_VERSION") ?? "2023-05-15";
-                    settings.DeploymentId = Environment.GetEnvironmentVariable("AZURE_OPENAI_CHATGPT_DEPLOYMENT")!;
+                    settings.DeploymentId = Environment.GetEnvironmentVariable("AZURE_OPENAI_DEPLOYMENT")!;
                 }
             }
         });
@@ -59,6 +61,7 @@ public static class OpenAIWebJobsBuilderExtensions
         builder.AddExtension<OpenAIExtension>();
 
         // Service objects that will be used by the extension
+        builder.Services.AddSingleton<IOpenAIServiceProvider, DefaultOpenAIServiceProvider>();
         builder.Services.AddSingleton<TextCompletionConverter>();
         builder.Services.AddSingleton<EmbeddingsConverter>();
         builder.Services.AddSingleton<SemanticSearchConverter>();

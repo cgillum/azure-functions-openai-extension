@@ -9,18 +9,17 @@ using OpenAI.ObjectModels.ResponseModels;
 
 OpenAIService openAiService = new(new OpenAiOptions()
 {
-    ApiKey = (Environment.GetEnvironmentVariable("OPENAI_API_KEY")!) ?? (Environment.GetEnvironmentVariable("AZURE_OPENAI_KEY")!),
+    ApiKey = (Environment.GetEnvironmentVariable("AZURE_OPENAI_KEY") ?? Environment.GetEnvironmentVariable("OPENAI_API_KEY"))!,
     BaseDomain = Environment.GetEnvironmentVariable("AZURE_OPENAI_ENDPOINT")!,
     ProviderType = ProviderType.Azure,
-    ApiVersion = Environment.GetEnvironmentVariable("OPENAI_API_VERSION") ?? "2023-05-15",
-    DeploymentId = Environment.GetEnvironmentVariable("AZURE_OPENAI_CHATGPT_DEPLOYMENT")!,
+    DeploymentId = Environment.GetEnvironmentVariable("AZURE_OPENAI_DEPLOYMENT")!,
 });
 
 CompletionCreateResponse completionResult = await openAiService.Completions.CreateCompletion(
     new CompletionCreateRequest()
     {
         Prompt = "Once upon a time",
-        Model = Models.TextDavinciV3,
+        Model = Models.TextDavinciV3, // NOTE: The Model value is ignored when using Azure OpenAI
         MaxTokens = 500,
     });
 

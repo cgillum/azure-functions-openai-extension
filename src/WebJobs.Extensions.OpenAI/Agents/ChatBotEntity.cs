@@ -50,13 +50,13 @@ class ChatBotRuntimeState
 class ChatBotEntity : IChatBotEntity
 {
     readonly ILogger logger;
-    readonly IOpenAIService openAIService;
+    readonly IOpenAIServiceProvider openAIServiceProvider;
 
-    public ChatBotEntity(ILoggerFactory loggerFactory, IOpenAIService openAIService)
+    public ChatBotEntity(ILoggerFactory loggerFactory, IOpenAIServiceProvider openAIServiceProvider)
     {
         // When initialized via dependency injection
         this.logger = loggerFactory.CreateLogger<ChatBotEntity>();
-        this.openAIService = openAIService ?? throw new ArgumentNullException(nameof(openAIService));
+        this.openAIServiceProvider = openAIServiceProvider ?? throw new ArgumentNullException(nameof(openAIServiceProvider));
     }
 
     [JsonConstructor]
@@ -64,7 +64,7 @@ class ChatBotEntity : IChatBotEntity
     {
         // For deserialization
         this.logger = null!;
-        this.openAIService = null!;
+        this.openAIServiceProvider = null!;
     }
 
     [JsonProperty("state")]
@@ -113,7 +113,8 @@ class ChatBotEntity : IChatBotEntity
             Model = Models.Gpt_3_5_Turbo,
         };
 
-        ChatCompletionCreateResponse response = await this.openAIService.ChatCompletion.CreateCompletion(chatRequest);
+        IOpenAIService service = this.openAIServiceProvider.GetService(chatRequest.Model);
+        ChatCompletionCreateResponse response = await service.ChatCompletion.CreateCompletion(chatRequest);
         if (!response.Successful)
         {
             // Throwing an exception will cause the entity to abort the current operation.

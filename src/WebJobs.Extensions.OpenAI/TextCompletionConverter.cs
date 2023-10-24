@@ -17,12 +17,12 @@ class TextCompletionConverter :
     IAsyncConverter<TextCompletionAttribute, CompletionCreateResponse>,
     IAsyncConverter<TextCompletionAttribute, string>
 {
-    readonly IOpenAIService service;
+    readonly IOpenAIServiceProvider serviceProvider;
     readonly ILogger logger;
 
-    public TextCompletionConverter(IOpenAIService service, ILoggerFactory loggerFactory)
+    public TextCompletionConverter(IOpenAIServiceProvider serviceProvider, ILoggerFactory loggerFactory)
     {
-        this.service = service ?? throw new ArgumentNullException(nameof(service));
+        this.serviceProvider = serviceProvider ?? throw new ArgumentNullException(nameof(serviceProvider));
         this.logger = loggerFactory?.CreateLogger<TextCompletionConverter>() ?? throw new ArgumentNullException(nameof(loggerFactory));
     }
 
@@ -50,7 +50,8 @@ class TextCompletionConverter :
         CompletionCreateRequest request = attribute.BuildRequest();
         this.logger.LogInformation("Sending OpenAI completion request: {request}", request);
 
-        CompletionCreateResponse response = await this.service.Completions.CreateCompletion(
+        IOpenAIService service = this.serviceProvider.GetService(attribute.Model);
+        CompletionCreateResponse response = await service.Completions.CreateCompletion(
             request,
             modelId: null,
             cancellationToken);
