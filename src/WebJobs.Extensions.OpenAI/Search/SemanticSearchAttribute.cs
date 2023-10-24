@@ -67,7 +67,7 @@ public class SemanticSearchAttribute : Attribute
     /// This property supports binding expressions.
     /// </remarks>
     [AutoResolve]
-    public string EmbeddingsModel { get; set; } = Models.TextEmbeddingAdaV2;
+    public string EmbeddingsModel { get; set; } = Environment.GetEnvironmentVariable("AZURE_OPENAI_EMBEDDINGS_DEPLOYMENT") ?? Models.TextEmbeddingAdaV2;
 
     /// <summary>
     /// Gets or sets the name of the Large Language Model to invoke for chat responses.
@@ -77,7 +77,7 @@ public class SemanticSearchAttribute : Attribute
     /// This property supports binding expressions.
     /// </remarks>
     [AutoResolve]
-    public string ChatModel { get; set; } = Models.ChatGpt3_5Turbo;
+    public string ChatModel { get; set; } = Environment.GetEnvironmentVariable("AZURE_OPENAI_CHATGPT_DEPLOYMENT") ?? Models.ChatGpt3_5Turbo;
 
     /// <summary>
     /// Gets or sets the system prompt to use for prompting the large language model.

@@ -40,6 +40,12 @@ public sealed class EmbeddingsAttribute : Attribute
     public string Model { get; set; } = "text-embedding-ada-002";
 
     /// <summary>
+    /// Gets or sets the ID of the Model or Azure Deployment to use.
+    /// </summary>
+    [AutoResolve]
+    public string EmbeddingsModel { get; set; } = Environment.GetEnvironmentVariable("AZURE_OPENAI_EMBEDDINGS_DEPLOYMENT") ?? "text-embedding-ada-002";
+
+    /// <summary>
     /// Gets or sets the maximum number of characters to chunk the input into.
     /// </summary>
     /// <remarks>
@@ -75,7 +81,10 @@ public sealed class EmbeddingsAttribute : Attribute
     {
         using TextReader reader = this.GetTextReader();
         List<string> chunks = GetTextChunks(reader, 0, this.MaxChunkLength).ToList();
-        return new EmbeddingCreateRequest { Model = this.Model, InputAsList = chunks };
+
+        // Prefer Azure Embedding Model over the default model
+        // Embedding Deployment Id must be different than the Chat GPT Deployment Id in Azure case
+        return new EmbeddingCreateRequest { Model = this.EmbeddingsModel, InputAsList = chunks };
     }
 
     TextReader GetTextReader()

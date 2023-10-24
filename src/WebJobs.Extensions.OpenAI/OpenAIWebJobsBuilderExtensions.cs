@@ -50,7 +50,7 @@ public static class OpenAIWebJobsBuilderExtensions
                     settings.BaseDomain = Environment.GetEnvironmentVariable("AZURE_OPENAI_ENDPOINT")!;
                     settings.ProviderType = ProviderType.Azure;
                     settings.ApiVersion = Environment.GetEnvironmentVariable("OPENAI_API_VERSION") ?? "2023-05-15";
-                    settings.DeploymentId = Environment.GetEnvironmentVariable("AZURE_OPENAI_CHATGPT_DEPLOYMENT")!;
+                    //settings.DeploymentId = Environment.GetEnvironmentVariable("AZURE_OPENAI_CHATGPT_DEPLOYMENT")!;
                 }
             }
         });

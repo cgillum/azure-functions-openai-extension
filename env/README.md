@@ -9,6 +9,8 @@ OPENAI_API_VERSION="2023-05-15"
 AZURE_OPENAI_KEY=""
 AZURE_OPENAI_ENDPOINT="https://***.openai.azure.com/"
 AZURE_OPENAI_CHATGPT_DEPLOYMENT=""
+"AZURE_OPENAI_EMBEDDINGS_DEPLOYMENT": "",
+"KustoConnectionString": "https://***.kusto.windows.net/vectorsearch; Fed=true; Accept=true"
 ```
 
 2. Export the environment variables from `.env` to your machine
