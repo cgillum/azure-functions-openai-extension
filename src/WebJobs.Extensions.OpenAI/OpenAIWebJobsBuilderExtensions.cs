@@ -32,28 +32,34 @@ public static class OpenAIWebJobsBuilderExtensions
         // Register the OpenAI service, which we depend on.
         builder.Services.AddOpenAIService(settings =>
         {
-            // Try public OpenAI service
-            settings.ApiKey = Environment.GetEnvironmentVariable("OPENAI_API_KEY");
-            settings.Organization = Environment.GetEnvironmentVariable("OPENAI_ORGANIZATION_ID");
-
-            string? azureOpenAIEndpoint = Environment.GetEnvironmentVariable("AZURE_OPENAI_ENDPOINT");
-
-            if (settings.ApiKey == null || !string.IsNullOrEmpty(azureOpenAIEndpoint))
+            // Common configuration.
+            // The Betalgo SDK has a default API version, but we support overriding it using an environment variable.
+            string? apiVersion = Environment.GetEnvironmentVariable("OPENAI_API_VERSION");
+            if (!string.IsNullOrEmpty(apiVersion))
             {
-                // Try Azure connection, which is preferred for privacy
-                settings.ApiKey = Environment.GetEnvironmentVariable("AZURE_OPENAI_KEY")!;
+                settings.ApiVersion = apiVersion;
+            }
 
-                if (settings.ApiKey == null)
-                {
-                    throw new InvalidOperationException("Must set OPENAI_API_KEY or AZURE_OPENAI_KEY environment variable.");
-                }
-                else
-                {
-                    settings.ProviderType = ProviderType.Azure;
-                    settings.BaseDomain = Environment.GetEnvironmentVariable("AZURE_OPENAI_ENDPOINT")!;
-                    settings.ApiVersion = Environment.GetEnvironmentVariable("OPENAI_API_VERSION") ?? "2023-05-15";
-                    settings.DeploymentId = Environment.GetEnvironmentVariable("AZURE_OPENAI_DEPLOYMENT")!;
-                }
+            // Try Azure connection first, which is preferred for privacy
+            string? azureOpenAIEndpoint = Environment.GetEnvironmentVariable("AZURE_OPENAI_ENDPOINT");
+            if (!string.IsNullOrEmpty(azureOpenAIEndpoint))
+            {
+                // Azure OpenAI configuration
+                settings.ApiKey = Environment.GetEnvironmentVariable("AZURE_OPENAI_KEY")!;
+                settings.ProviderType = ProviderType.Azure;
+                settings.BaseDomain = azureOpenAIEndpoint;
+                settings.DeploymentId = "placeholder"; // dummy value - this will be replaced at runtime
+            }
+            else
+            {
+                // Public OpenAI configuration
+                settings.ApiKey = Environment.GetEnvironmentVariable("OPENAI_API_KEY");
+                settings.Organization = Environment.GetEnvironmentVariable("OPENAI_ORGANIZATION_ID");
+            }
+
+            if (string.IsNullOrEmpty(settings.ApiKey))
+            {
+                throw new InvalidOperationException("Must set OPENAI_API_KEY or AZURE_OPENAI_KEY environment variable.");
             }
         });
 
