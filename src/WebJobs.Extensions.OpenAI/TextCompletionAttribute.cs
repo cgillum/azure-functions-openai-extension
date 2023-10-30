@@ -5,7 +5,7 @@ using System;
 using Microsoft.Azure.WebJobs.Description;
 using OpenAI.ObjectModels.RequestModels;
 
-namespace WebJobs.Extensions.OpenAI;
+namespace Microsoft.Azure.Functions.Worker.Extensions.AI;
 
 /// <summary>
 /// Input binding attribute for capturing OpenAI completions in function executions.

@@ -1,7 +1,7 @@
 ﻿// Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-namespace WebJobs.Extensions.OpenAI;
+namespace Microsoft.Azure.Functions.Worker.Extensions.AI;
 
 /// <summary>
 /// Options for interpreting input binding data.

@@ -8,7 +8,7 @@ using OpenAI;
 using OpenAI.Interfaces;
 using OpenAI.Managers;
 
-namespace WebJobs.Extensions.OpenAI;
+namespace Microsoft.Azure.Functions.Worker.Extensions.AI;
 
 interface IOpenAIServiceProvider
 {

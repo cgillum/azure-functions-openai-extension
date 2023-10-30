@@ -5,10 +5,11 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using Microsoft.Azure.WebJobs.Description;
+//using Microsoft.Azure.WebJobs.Description;
 using OpenAI.ObjectModels.RequestModels;
+using Microsoft.Azure.Functions.Worker.Extensions.Abstractions;
 
-namespace WebJobs.Extensions.OpenAI;
+namespace Microsoft.Azure.Functions.Worker.Extensions.AI;
 
 /// <summary>
 /// Input binding attribute for converting function trigger input into OpenAI embeddings.
@@ -17,9 +18,7 @@ namespace WebJobs.Extensions.OpenAI;
 /// More information on OpenAI embeddings can be found at
 /// https://platform.openai.com/docs/guides/embeddings/what-are-embeddings.
 /// </remarks>
-[Binding]
-[AttributeUsage(AttributeTargets.Parameter)]
-public sealed class EmbeddingsAttribute : Attribute
+public sealed class EmbeddingsAttribute : InputBindingAttribute
 {
     /// <summary>
     /// Initializes a new instance of the <see cref="EmbeddingsAttribute"/> class with the specified input.
@@ -36,7 +35,6 @@ public sealed class EmbeddingsAttribute : Attribute
     /// <summary>
     /// Gets or sets the ID of the model to use.
     /// </summary>
-    [AutoResolve]
     public string Model { get; set; } = "text-embedding-ada-002";
 
     /// <summary>
@@ -54,7 +52,6 @@ public sealed class EmbeddingsAttribute : Attribute
     /// <summary>
     /// Gets the input to generate embeddings for.
     /// </summary>
-    [AutoResolve]
     public string Input { get; }
 
     /// <summary>

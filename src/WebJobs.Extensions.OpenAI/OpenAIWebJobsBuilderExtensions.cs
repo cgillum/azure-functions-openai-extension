@@ -6,10 +6,10 @@ using Microsoft.Azure.WebJobs;
 using Microsoft.Extensions.DependencyInjection;
 using OpenAI;
 using OpenAI.Extensions;
-using WebJobs.Extensions.OpenAI.Agents;
-using WebJobs.Extensions.OpenAI.Search;
+// using WebJobs.Extensions.OpenAI.Agents;
+// using WebJobs.Extensions.OpenAI.Search;
 
-namespace WebJobs.Extensions.OpenAI;
+namespace Microsoft.Azure.Functions.Worker.Extensions.AI;
 
 /// <summary>
 /// Extension methods for registering the OpenAI webjobs extension.
@@ -71,8 +71,8 @@ public static class OpenAIWebJobsBuilderExtensions
         builder.Services.AddSingleton<TextCompletionConverter>();
         builder.Services.AddSingleton<EmbeddingsConverter>();
         builder.Services.AddSingleton<SemanticSearchConverter>();
-        builder.Services.AddSingleton<ChatBotBindingConverter>();
-        builder.Services.AddSingleton<IChatBotService, DefaultChatBotService>();
+        //builder.Services.AddSingleton<ChatBotBindingConverter>();
+        //builder.Services.AddSingleton<IChatBotService, DefaultChatBotService>();
 
         return builder;
     }

@@ -3,12 +3,12 @@
 
 using Microsoft.Azure.WebJobs.Hosting;
 using Microsoft.Azure.WebJobs;
-using WebJobs.Extensions.OpenAI;
+using Microsoft.Azure.Functions.Worker.Extensions.AI;
 
 // This auto-registers the OpenAI extension when a webjobs/functions host starts up.
 [assembly: WebJobsStartup(typeof(OpenAIWebJobsStartup))]
 
-namespace WebJobs.Extensions.OpenAI;
+namespace Microsoft.Azure.Functions.Worker.Extensions.AI;
 
 class OpenAIWebJobsStartup : IWebJobsStartup2
 {

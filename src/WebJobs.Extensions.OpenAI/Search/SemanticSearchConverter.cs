@@ -12,7 +12,7 @@ using OpenAI.Interfaces;
 using OpenAI.ObjectModels.RequestModels;
 using OpenAI.ObjectModels.ResponseModels;
 
-namespace WebJobs.Extensions.OpenAI.Search;
+namespace Microsoft.Azure.Functions.Worker.Extensions.AI;
 
 /// <summary>
 /// Input binding target for the <see cref="SemanticSearchAttribute"/>.

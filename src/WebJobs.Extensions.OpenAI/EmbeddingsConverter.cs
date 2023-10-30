@@ -11,7 +11,7 @@ using OpenAI.Interfaces;
 using OpenAI.ObjectModels.RequestModels;
 using OpenAI.ObjectModels.ResponseModels;
 
-namespace WebJobs.Extensions.OpenAI;
+namespace Microsoft.Azure.Functions.Worker.Extensions.AI;
 
 class EmbeddingsConverter :
     IAsyncConverter<EmbeddingsAttribute, EmbeddingsContext>,

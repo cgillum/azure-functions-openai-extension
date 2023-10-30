@@ -1,10 +1,25 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
+	<PropertyGroup>
+		<AssemblyName>Microsoft.Azure.Functions.Worker.Extensions.AI</AssemblyName>
+		<RootNamespace>Microsoft.Azure.Functions.Worker.Extensions.AI</RootNamespace>
+		<Description>AI extension for .NET isolated Azure Functions</Description>
+		<Product>AI Binding Worker</Product>
+		<!-- Default Version for dev -->
+		<Version>99.99.99</Version>
+		<OOPWorkerSupportedExtensionVersion>99.99.99</OOPWorkerSupportedExtensionVersion>
+		<PackageId>Microsoft.Azure.Functions.Worker.Extensions.AI</PackageId>
+		<PackageTags>Microsoft Azure WebJobs AzureFunctions Isolated DotnetIsolated AI AzureOpenAI Worker</PackageTags>
+		<GenerateAssemblyInfo>true</GenerateAssemblyInfo>
+		<IsPackable>true</IsPackable>
+		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+	</PropertyGroup>
+
   <ItemGroup>
-    <PackageReference Include="Microsoft.Azure.WebJobs" Version="3.0.*" />
-    <PackageReference Include="Microsoft.Azure.Functions.Extensions" Version="1.1.*" />
+		<PackageReference Include="Microsoft.Azure.Functions.Worker.Extensions.Abstractions" />
     <PackageReference Include="Microsoft.Azure.WebJobs.Extensions.DurableTask" Version="2.10.*" />
     <PackageReference Include="Microsoft.Azure.WebJobs.Script.Abstractions" Version="1.0.0-preview" />
+    <None Include=".\Resources\pkgicon.png" Pack="true" PackagePath="" />
   </ItemGroup>
 
   <ItemGroup>

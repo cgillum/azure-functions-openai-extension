@@ -5,7 +5,7 @@ using System;
 using Microsoft.Azure.WebJobs.Description;
 using OpenAI.ObjectModels;
 
-namespace WebJobs.Extensions.OpenAI.Search;
+namespace Microsoft.Azure.Functions.Worker.Extensions.AI;
 
 /// <summary>
 /// Binding attribute for semantic search (input bindings) and semantic document storage (output bindings).

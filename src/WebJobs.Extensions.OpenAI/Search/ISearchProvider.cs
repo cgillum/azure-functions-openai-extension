@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using System.Collections.Generic;
 using System.Threading;
 
-namespace WebJobs.Extensions.OpenAI.Search;
+namespace Microsoft.Azure.Functions.Worker.Extensions.AI;
 
 /// <summary>
 /// Interface for search store providers to implement.

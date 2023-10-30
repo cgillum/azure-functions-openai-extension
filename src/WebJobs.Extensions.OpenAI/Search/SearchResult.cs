@@ -3,7 +3,7 @@
 
 using System;
 
-namespace WebJobs.Extensions.OpenAI.Search;
+namespace Microsoft.Azure.Functions.Worker.Extensions.AI;
 
 /// <summary>
 /// Represents the results of a semantic search.
