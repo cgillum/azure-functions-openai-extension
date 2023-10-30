@@ -1,0 +1,9 @@
+{
+  "profiles": {
+    "csharp_isolated": {
+      "commandName": "Project",
+      "commandLineArgs": "--port 7051",
+      "launchBrowser": false
+    }
+  }
+}

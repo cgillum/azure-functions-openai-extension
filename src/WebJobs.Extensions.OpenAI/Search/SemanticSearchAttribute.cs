@@ -2,7 +2,8 @@
 // Licensed under the MIT License.
 
 using System;
-using Microsoft.Azure.WebJobs.Description;
+//using Microsoft.Azure.WebJobs.Description;
+using Microsoft.Azure.Functions.Worker.Extensions.Abstractions;
 using OpenAI.ObjectModels;
 
 namespace Microsoft.Azure.Functions.Worker.Extensions.AI;
@@ -10,9 +11,8 @@ namespace Microsoft.Azure.Functions.Worker.Extensions.AI;
 /// <summary>
 /// Binding attribute for semantic search (input bindings) and semantic document storage (output bindings).
 /// </summary>
-[Binding]
 [AttributeUsage(AttributeTargets.Parameter)]
-public class SemanticSearchAttribute : Attribute
+public class SemanticSearchAttribute : InputBindingAttribute
 {
     /// <summary>
     /// Initializes a new instance of the <see cref="SemanticSearchAttribute"/> class with the specified connection
@@ -37,7 +37,6 @@ public class SemanticSearchAttribute : Attribute
     /// <remarks>
     /// This property supports binding expressions.
     /// </remarks>
-    [AutoResolve]
     public string ConnectionName { get; set; }
 
     /// <summary>
@@ -46,7 +45,6 @@ public class SemanticSearchAttribute : Attribute
     /// <remarks>
     /// This property supports binding expressions.
     /// </remarks>
-    [AutoResolve]
     public string Collection { get; set; }
 
     /// <summary>
@@ -56,7 +54,6 @@ public class SemanticSearchAttribute : Attribute
     /// <remarks>
     /// This property supports binding expressions.
     /// </remarks>
-    [AutoResolve]
     public string? Query { get; set; }
 
     /// <summary>
@@ -66,7 +63,6 @@ public class SemanticSearchAttribute : Attribute
     /// <remarks>
     /// This property supports binding expressions.
     /// </remarks>
-    [AutoResolve]
     public string EmbeddingsModel { get; set; } = Models.TextEmbeddingAdaV2;
 
     /// <summary>
@@ -76,7 +72,6 @@ public class SemanticSearchAttribute : Attribute
     /// <remarks>
     /// This property supports binding expressions.
     /// </remarks>
-    [AutoResolve]
     public string ChatModel { get; set; } = Models.Gpt_3_5_Turbo;
 
     /// <summary>
@@ -90,7 +85,6 @@ public class SemanticSearchAttribute : Attribute
     /// This property supports binding expressions.
     /// </para>
     /// </remarks>
-    [AutoResolve]
     public string SystemPrompt { get; set; } = """
         You are a helpful assistant. You are responding to requests from a user about internal emails and documents.
         You can and should refer to the internal documents to help respond to requests. If a user makes a request that's

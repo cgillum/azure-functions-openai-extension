@@ -2,7 +2,6 @@
 // Licensed under the MIT License.
 
 using System;
-using Microsoft.Azure.WebJobs.Description;
 using OpenAI.ObjectModels.RequestModels;
 
 namespace Microsoft.Azure.Functions.Worker.Extensions.AI;
@@ -10,8 +9,6 @@ namespace Microsoft.Azure.Functions.Worker.Extensions.AI;
 /// <summary>
 /// Input binding attribute for capturing OpenAI completions in function executions.
 /// </summary>
-[Binding]
-[AttributeUsage(AttributeTargets.Parameter)]
 public sealed class TextCompletionAttribute : Attribute
 {
     /// <summary>
@@ -26,13 +23,11 @@ public sealed class TextCompletionAttribute : Attribute
     /// <summary>
     /// Gets or sets the prompt to generate completions for, encoded as a string.
     /// </summary>
-    [AutoResolve]
     public string Prompt { get; }
 
     /// <summary>
     /// Gets or sets the ID of the model to use.
     /// </summary>
-    [AutoResolve]
     public string Model { get; set; } = "text-davinci-003";
 
     /// <summary>
@@ -42,7 +37,6 @@ public sealed class TextCompletionAttribute : Attribute
     /// <remarks>
     /// It's generally recommend to use this or <see cref="this.TopP"/> but not both.
     /// </remarks>
-    [AutoResolve]
     public string? Temperature { get; set; } = "0.5";
 
     /// <summary>
@@ -53,7 +47,6 @@ public sealed class TextCompletionAttribute : Attribute
     /// <remarks>
     /// It's generally recommend to use this or <see cref="this.Temperature"/> but not both.
     /// </remarks>
-    [AutoResolve]
     public string? TopP { get; set; }
 
     /// <summary>
@@ -63,7 +56,6 @@ public sealed class TextCompletionAttribute : Attribute
     /// The token count of your prompt plus max_tokens cannot exceed the model's context length.
     /// Most models have a context length of 2048 tokens (except for the newest models, which support 4096).
     /// </remarks>
-    [AutoResolve]
     public string? MaxTokens { get; set; } = "100";
 
     /// <summary>

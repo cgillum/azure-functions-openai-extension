@@ -8,7 +8,6 @@ using Newtonsoft.Json.Linq;
 using OpenAI.Interfaces;
 using OpenAI.ObjectModels.ResponseModels;
 //using WebJobs.Extensions.OpenAI.Agents;
-//using WebJobs.Extensions.OpenAI.Search;
 
 namespace Microsoft.Azure.Functions.Worker.Extensions.AI;
 
