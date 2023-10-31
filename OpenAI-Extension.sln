@@ -35,6 +35,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "other", "other", "{4B55F637
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CSharpInProcSamples", "samples\other\dotnet\csharp-inproc\CSharpInProcSamples.csproj", "{C541A7B4-5F55-4575-A80B-A9D8125E0A55}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microsoft.Azure.Functions.Worker.Extensions.OpenAI", "Worker.Extensions.OpenAI\src\Microsoft.Azure.Functions.Worker.Extensions.OpenAI.csproj", "{30319235-E854-45E9-B589-EA436065C846}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -65,6 +67,10 @@ Global
 		{C541A7B4-5F55-4575-A80B-A9D8125E0A55}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C541A7B4-5F55-4575-A80B-A9D8125E0A55}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C541A7B4-5F55-4575-A80B-A9D8125E0A55}.Release|Any CPU.Build.0 = Release|Any CPU
+		{30319235-E854-45E9-B589-EA436065C846}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{30319235-E854-45E9-B589-EA436065C846}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{30319235-E854-45E9-B589-EA436065C846}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{30319235-E854-45E9-B589-EA436065C846}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

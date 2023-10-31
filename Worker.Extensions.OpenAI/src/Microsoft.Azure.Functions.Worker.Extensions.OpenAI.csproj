@@ -7,7 +7,12 @@
   </PropertyGroup>
 
 	<ItemGroup>
+		<PackageReference Include="Betalgo.OpenAI" Version="7.3.1" />
 		<PackageReference Include="Microsoft.Azure.Functions.Worker.Extensions.Abstractions" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\..\src\WebJobs.Extensions.OpenAI\WebJobs.Extensions.OpenAI.csproj" />
 	</ItemGroup>
 
 </Project>
