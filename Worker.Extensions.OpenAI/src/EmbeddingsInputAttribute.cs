@@ -1,4 +1,5 @@
 ﻿using System;
+using Microsoft.Azure.Functions.Worker.Converters;
 using Microsoft.Azure.Functions.Worker.Extensions.Abstractions;
 //using WebJobs.Extensions.OpenAI;
 using OpenAI.ObjectModels.RequestModels;
@@ -12,6 +13,8 @@ namespace Microsoft.Azure.Functions.Worker.Extensions.OpenAI;
 /// More information on OpenAI embeddings can be found at
 /// https://platform.openai.com/docs/guides/embeddings/what-are-embeddings.
 /// </remarks>
+[InputConverter(typeof(EmbeddingsInputConverter))]
+[ConverterFallbackBehavior(ConverterFallbackBehavior.Default)]
 public class EmbeddingsInputAttribute : InputBindingAttribute
 {
     /// <summary>
