@@ -13,6 +13,7 @@ namespace Functions.Worker.Extensions.OpenAI;
 /// <summary>
 /// Input binding attribute for capturing OpenAI completions in function executions.
 /// </summary>
+[AttributeUsage(AttributeTargets.Parameter)]
 public sealed class TextCompletionInputAttribute : InputBindingAttribute
 {
     /// <summary>

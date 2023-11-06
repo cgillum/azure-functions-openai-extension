@@ -1,0 +1,27 @@
+# For more info on HTTP files go to https://aka.ms/vs/httpfile
+
+### Demo 1: WhoIs API
+
+POST http://localhost:7179/api/whois/pikachu
+
+
+### Demo 2: Generic Text Completion API
+
+POST http://localhost:7179/api/GenericCompletion
+Content-Type: application/json
+
+{"Prompt": "Once upon a time"}
+
+
+### Demo 3: Embeddings from HTTP request
+POST http://localhost:7179/api/embeddings
+Content-Type: application/json
+
+{"RawText": "Hello world"}
+
+
+### Demo 4: Embeddings from file (NOTE: replace path/to/file.txt with a real file path)
+POST http://localhost:7179/api/embeddings-from-file
+Content-Type: application/json
+
+{"FilePath": "path/to/file.txt"}
