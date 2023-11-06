@@ -12,7 +12,7 @@ OpenAIService openAiService = new(new OpenAiOptions()
     ApiKey = (Environment.GetEnvironmentVariable("AZURE_OPENAI_KEY") ?? Environment.GetEnvironmentVariable("OPENAI_API_KEY"))!,
     BaseDomain = Environment.GetEnvironmentVariable("AZURE_OPENAI_ENDPOINT")!,
     ProviderType = ProviderType.Azure,
-    DeploymentId = Environment.GetEnvironmentVariable("AZURE_OPENAI_DEPLOYMENT")!,
+    DeploymentId = Environment.GetEnvironmentVariable("AZURE_OPENAI_CHATGPT_DEPLOYMENT")!,
 });
 
 CompletionCreateResponse completionResult = await openAiService.Completions.CreateCompletion(

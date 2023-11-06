@@ -1,3 +1,7 @@
+using System.Net;
+using System.Text.Json.Serialization;
+using System.Web;
+using Azure;
 using Functions.Worker.Extensions.OpenAI;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Azure.Functions.Worker;
@@ -19,32 +23,53 @@ public static class TextCompletions
     /// </summary>
     [Function(nameof(WhoIs))]
     public static string WhoIs(
-        [HttpTrigger(AuthorizationLevel.Function, Route = "whois/{name}")] HttpRequestData req,
-        [TextCompletionInput("Who is {name}?")] CompletionCreateResponse response)
+        [HttpTrigger(AuthorizationLevel.Anonymous, Route = "whois/{name}")] HttpRequestData req,
+        [TextCompletionInput("Who is {name}?", Model = "%AZURE_OPENAI_CHATGPT_DEPLOYMENT%")] CompletionCreateResponse response)
     {
         return response.Choices[0].Text;
     }
+
 
     /// <summary>
     /// This sample takes a prompt as input, sends it directly to the OpenAI completions API, and results the 
     /// response as the output.
     /// </summary>
     [Function(nameof(GenericCompletion))]
-    public static IActionResult GenericCompletion(
-        [HttpTrigger(AuthorizationLevel.Function, "post")] PromptPayload payload,
-        [TextCompletionInput("{Prompt}", Model = "text-davinci-003")] CompletionCreateResponse response,
-        ILogger log)
+    public static HttpResponseData GenericCompletion(
+        [HttpTrigger(AuthorizationLevel.Anonymous, "post")] HttpRequestData req,
+        FunctionContext executionContext,
+        [TextCompletionInput("{Prompt}", Model = "%AZURE_OPENAI_CHATGPT_DEPLOYMENT%")] CompletionCreateResponse completionCreateResponse,
+        ILogger _logger)
     {
-        if (!response.Successful)
+        if (!completionCreateResponse.Successful)
         {
-            Error error = response.Error ?? new Error() { MessageObject = "OpenAI returned an unspecified error" };
-            return new ObjectResult(error) { StatusCode = 500 };
+            Error error = completionCreateResponse.Error ?? new Error() { MessageObject = "OpenAI returned an unspecified error" };
+            _logger.LogError(error.Message);
+            return req.CreateResponse(HttpStatusCode.BadRequest);
         }
 
-        log.LogInformation("Prompt = {prompt}, Response = {response}", payload.Prompt, response);
-        string text = response.Choices[0].Text;
-        return new OkObjectResult(text);
+        var response = req.CreateResponse(HttpStatusCode.OK);
+        response.Headers.Add("Content-Type", "text/plain; charset=utf-8");
+        string completionText = completionCreateResponse.Choices[0].Text;
+        //_logger.LogInformation(completionText);
+        response.WriteString(completionText);
+
+        return response;
+
     }
 
-    public record PromptPayload(string Prompt);
+    public record RequestPayload(string Prompt);
+    //* Use the following to validate Prompt payload in the request explicitly or to do more prompting
+    //if (req.Body.Length > 0)
+    //{
+    //    RequestPayload? payload = await req.ReadFromJsonAsync<RequestPayload>();
+    //    string prompt = payload?.Prompt ?? "";
+    //} else
+    //{
+    //    _logger.LogError("Missing parameter Prompt must be set.");
+    //    var errResponse = req.CreateResponse(HttpStatusCode.InternalServerError);
+    //    await errResponse.WriteStringAsync("Missing parameter Prompt must be set.");
+    //    return errResponse;
+    //}
+
 }

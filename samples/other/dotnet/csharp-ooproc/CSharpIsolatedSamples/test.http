@@ -1,0 +1,35 @@
+﻿## TEST LOCALLY
+
+### upload an email
+POST http://localhost:7071/api/IngestEmail HTTP/1.1
+content-type: application/json
+
+{
+    "FilePath": "input.txt"
+}
+
+### ask a question to your email
+POST http://localhost:7071/api/GenericCompletion
+Content-Type: application/json
+
+{"Prompt":"what time to I need to be at the venue? "}
+
+## TEST IN AZURE (do `azd provision` first)
+
+### set URL and x-functions-key to correct values for your Azure FunctionApp
+
+### upload an email
+POST https://func-api-***.azurewebsites.net HTTP/1.1
+content-type: application/json
+x-functions-key: ***
+
+{
+    "FilePath": "input.txt"
+}
+
+### ask a question to your email
+POST https://func-api-***.azurewebsites.net/api/PromptEmail
+Content-Type: application/json
+x-functions-key: ***
+
+{"Prompt":"what time to I need to be at the venue? "}
