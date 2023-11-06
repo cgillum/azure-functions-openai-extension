@@ -20,7 +20,7 @@ public static class TextCompletions
     [Function(nameof(WhoIs))]
     public static string WhoIs(
         [HttpTrigger(AuthorizationLevel.Function, Route = "whois/{name}")] HttpRequestData req,
-        [TextCompletion("Who is {name}?")] CompletionCreateResponse response)
+        [TextCompletionInput("Who is {name}?")] CompletionCreateResponse response)
     {
         return response.Choices[0].Text;
     }
@@ -32,7 +32,7 @@ public static class TextCompletions
     [Function(nameof(GenericCompletion))]
     public static IActionResult GenericCompletion(
         [HttpTrigger(AuthorizationLevel.Function, "post")] PromptPayload payload,
-        [TextCompletion("{Prompt}", Model = "text-davinci-003")] CompletionCreateResponse response,
+        [TextCompletionInput("{Prompt}", Model = "text-davinci-003")] CompletionCreateResponse response,
         ILogger log)
     {
         if (!response.Successful)

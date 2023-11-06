@@ -13,13 +13,13 @@ namespace Functions.Worker.Extensions.OpenAI;
 /// <summary>
 /// Input binding attribute for capturing OpenAI completions in function executions.
 /// </summary>
-public sealed class TextCompletionAttribute : InputBindingAttribute
+public sealed class TextCompletionInputAttribute : InputBindingAttribute
 {
     /// <summary>
-    /// Initializes a new instance of the <see cref="TextCompletionAttribute"/> class with the specified text prompt.
+    /// Initializes a new instance of the <see cref="TextCompletionInputAttribute"/> class with the specified text prompt.
     /// </summary>
     /// <param name="prompt">The prompt to generate completions for, encoded as a string.</param>
-    public TextCompletionAttribute(string prompt)
+    public TextCompletionInputAttribute(string prompt)
     {
         this.Prompt = prompt ?? throw new ArgumentNullException(nameof(prompt));
     }
