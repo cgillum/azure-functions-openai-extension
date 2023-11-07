@@ -26,11 +26,15 @@ public class TextCompletions
     /// and embeds it into a text prompt, which is then sent to the OpenAI completions API.
     /// </summary>
     [Function(nameof(WhoIs))]
-    public string WhoIs(
+    public IActionResult WhoIs(
         [HttpTrigger(AuthorizationLevel.Function, "get", Route = "whois/{name}")] HttpRequest req,
         [TextCompletionInput("Who is {name}?")] CompletionCreateResponse response)
     {
-        return response.Choices[0].Text;
+        return new ContentResult
+        {
+            Content = response.Choices[0].Text.Trim(),
+            ContentType = "text/plain; charset=utf-8",
+        };
     }
 
     /// <summary>
