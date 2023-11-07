@@ -1,11 +1,11 @@
 # For more info on HTTP files go to https://aka.ms/vs/httpfile
 
-### Demo 1: WhoIs API
+### Demo 1.1: WhoIs API
 
 POST http://localhost:7179/api/whois/pikachu
 
 
-### Demo 2: Generic Text Completion API
+### Demo 1.2: Generic Text Completion API
 
 POST http://localhost:7179/api/GenericCompletion
 Content-Type: application/json
@@ -13,15 +13,44 @@ Content-Type: application/json
 {"Prompt": "Once upon a time"}
 
 
-### Demo 3: Embeddings from HTTP request
+### Demo 2.1: Embeddings from HTTP request
 POST http://localhost:7179/api/embeddings
 Content-Type: application/json
 
 {"RawText": "Hello world"}
 
 
-### Demo 4: Embeddings from file (NOTE: replace path/to/file.txt with a real file path)
+### Demo 2.2: Embeddings from file (NOTE: replace path/to/file.txt with a real file path)
 POST http://localhost:7179/api/embeddings-from-file
 Content-Type: application/json
 
 {"FilePath": "path/to/file.txt"}
+
+
+## Demo 3: Chat bots (NOTE: Currently broken: https://github.com/cgillum/azure-functions-openai-extension/issues/21)
+
+### Create a chat bot
+PUT http://localhost:7179/api/chats/test123
+Content-Type: application/json
+
+{
+  "instructions": "You are a helpful chatbot. In all your English responses, speak as if you are Shakespeare."
+}
+
+
+### Send the first message to the chatbot
+POST http://localhost:7179/api/chats/test123
+Content-Type: text/plain
+
+Who won SuperBowl XLVIII in 2014?
+
+
+### Get the chatbot's response
+GET http://localhost:7179/api/chats/test123?timestampUTC=2023-08-10T07:51:10Z
+
+
+### Send the second message to the chatbot
+POST http://localhost:7179/api/chats/test123
+Content-Type: text/plain
+
+Amazing! Do you know who performed the halftime show?

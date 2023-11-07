@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Azure.Functions.Worker;
 using Microsoft.Extensions.Logging;
+using FromBodyAttribute = Microsoft.Azure.Functions.Worker.Http.FromBodyAttribute;
 
 namespace CSharpIsolatedSamples;
 
@@ -31,7 +32,7 @@ public class TextEmbeddings
     [Function(nameof(GenerateEmbeddings_Http_Request))]
     public IActionResult GenerateEmbeddings_Http_Request(
         [HttpTrigger(AuthorizationLevel.Function, "post", Route = "embeddings")] HttpRequest req,
-        [Microsoft.Azure.Functions.Worker.Http.FromBody] EmbeddingsRequest input,
+        [FromBody] EmbeddingsRequest input,
         [EmbeddingsInput("{RawText}", InputType.RawText)] EmbeddingsContext embeddings)
     {
         this.logger.LogInformation(
@@ -51,7 +52,7 @@ public class TextEmbeddings
     [Function(nameof(GetEmbeddings_Http_FilePath))]
     public IActionResult GetEmbeddings_Http_FilePath(
         [HttpTrigger(AuthorizationLevel.Function, "post", Route = "embeddings-from-file")] HttpRequest req,
-        [Microsoft.Azure.Functions.Worker.Http.FromBody] EmbeddingsRequest input,
+        [FromBody] EmbeddingsRequest input,
         [EmbeddingsInput("{FilePath}", InputType.FilePath, MaxChunkLength = 512)] EmbeddingsContext embeddings)
     {
         this.logger.LogInformation(

@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Azure.Functions.Worker;
 using Microsoft.Extensions.Logging;
 using OpenAI.ObjectModels.ResponseModels;
+using FromBodyAttribute = Microsoft.Azure.Functions.Worker.Http.FromBodyAttribute;
 
 namespace CSharpIsolatedSamples;
 
@@ -39,7 +40,7 @@ public class TextCompletions
     [Function(nameof(GenericCompletion))]
     public IActionResult GenericCompletion(
         [HttpTrigger(AuthorizationLevel.Function, "post")] HttpRequest request,
-        [Microsoft.Azure.Functions.Worker.Http.FromBody] PromptPayload payload,
+        [FromBody] PromptPayload payload,
         [TextCompletionInput("{Prompt}", Model = "text-davinci-003")] CompletionCreateResponse response)
     {
         if (!response.Successful)
