@@ -32,7 +32,6 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.*" PrivateAssets="All" />
-    <PackageReference Include="LocalNuGet" Version="1.0.0" />
   </ItemGroup>
 
   <!-- https://aka.ms/nuget/authoring-best-practices/readme -->
