@@ -23,8 +23,8 @@ jobs:
       with:
         dotnet-version: 6.0.x
 
-    - name: Configure NuGet
-      run: dotnet nuget add source https://www.myget.org/F/azure-appservice/api/v3/index.json
+    - name: Configure NuGet for Worker build
+      run: cd /tmp && dotnet nuget add source https://www.myget.org/F/azure-appservice/api/v3/index.json
 
     - name: Restore dependencies
       run: dotnet restore
