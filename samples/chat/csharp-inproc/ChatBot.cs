@@ -42,7 +42,7 @@ public static class ChatBot
     public static async Task<IActionResult> PostUserResponse(
         [HttpTrigger(AuthorizationLevel.Anonymous, "post", Route = "chats/{chatId}")] HttpRequest req,
         string chatId,
-        [ChatBotPost("{chatId}", Model = "gpt-3.5-turbo")] ICollector<ChatBotPostRequest> newMessages)
+        [ChatBotPost("{chatId}")] ICollector<ChatBotPostRequest> newMessages)
     {
         string userMessage = await req.ReadAsStringAsync();
         if (string.IsNullOrEmpty(userMessage))
