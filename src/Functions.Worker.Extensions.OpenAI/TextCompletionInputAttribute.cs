@@ -5,7 +5,7 @@ using Microsoft.Azure.Functions.Worker.Extensions.Abstractions;
 
 
 // TODO: Move this somewhere else
-[assembly: ExtensionInformation("CGillum.WebJobs.Extensions.OpenAI", "0.4.0-alpha")]
+[assembly: ExtensionInformation("CGillum.WebJobs.Extensions.OpenAI", "0.3.1-alpha")]
 
 
 namespace Functions.Worker.Extensions.OpenAI;
