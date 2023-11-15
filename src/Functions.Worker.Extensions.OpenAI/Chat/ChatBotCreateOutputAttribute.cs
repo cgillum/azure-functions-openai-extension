@@ -1,0 +1,40 @@
+// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT License.
+
+using Microsoft.Azure.Functions.Worker.Extensions.Abstractions;
+
+namespace Functions.Worker.Extensions.OpenAI.Chat;
+
+[AttributeUsage(AttributeTargets.Parameter | AttributeTargets.Property)]
+public class ChatBotCreateOutputAttribute : OutputBindingAttribute
+{
+    // No configuration needed
+}
+
+public class ChatBotCreateRequest
+{
+    public ChatBotCreateRequest()
+    {
+        // For deserialization
+        this.Id = string.Empty;
+    }
+
+    public ChatBotCreateRequest(string id)
+    {
+        this.Id = id;
+    }
+
+    public ChatBotCreateRequest(string id, string? instructions)
+    {
+        this.Id = id;
+    
+        if (!string.IsNullOrWhiteSpace(instructions))
+        {
+            this.Instructions = instructions;
+        }
+    }
+
+    public string Id { get; set; }
+    public string Instructions { get; set; } = "You are a helpful chat bot.";
+    public DateTime? ExpiresAt { get; set; }
+}
