@@ -1,7 +1,6 @@
 ﻿// Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-using System;
 using Microsoft.Azure.WebJobs.Description;
 using Microsoft.Azure.WebJobs.Host.Config;
 using Newtonsoft.Json.Linq;
@@ -20,19 +19,22 @@ partial class OpenAIExtension : IExtensionConfigProvider
     readonly EmbeddingsConverter embeddingsConverter;
     readonly SemanticSearchConverter semanticSearchConverter;
     readonly ChatBotBindingConverter chatBotConverter;
+    readonly AssistantSkillTriggerBindingProvider assistantskillTriggerBindingProvider;
 
     public OpenAIExtension(
         IOpenAIService service,
         TextCompletionConverter textCompletionConverter,
         EmbeddingsConverter embeddingsConverter,
         SemanticSearchConverter semanticSearchConverter,
-        ChatBotBindingConverter chatBotConverter)
+        ChatBotBindingConverter chatBotConverter,
+        AssistantSkillTriggerBindingProvider assistantTriggerBindingProvider)
     {
         this.service = service ?? throw new ArgumentNullException(nameof(service));
         this.textCompletionConverter = textCompletionConverter ?? throw new ArgumentNullException(nameof(textCompletionConverter));
         this.embeddingsConverter = embeddingsConverter ?? throw new ArgumentNullException(nameof(embeddingsConverter));
         this.semanticSearchConverter = semanticSearchConverter ?? throw new ArgumentNullException(nameof(semanticSearchConverter));
         this.chatBotConverter = chatBotConverter ?? throw new ArgumentNullException(nameof(chatBotConverter));
+        this.assistantskillTriggerBindingProvider = assistantTriggerBindingProvider ?? throw new ArgumentNullException(nameof(assistantTriggerBindingProvider));
     }
 
     void IExtensionConfigProvider.Initialize(ExtensionConfigContext context)
@@ -67,6 +69,10 @@ partial class OpenAIExtension : IExtensionConfigProvider
         var chatBotQueryRule = context.AddBindingRule<ChatBotQueryAttribute>();
         chatBotQueryRule.BindToInput<ChatBotState>(this.chatBotConverter);
         chatBotQueryRule.BindToInput<string>(this.chatBotConverter);
+
+        // Assistant skill trigger support
+        context.AddBindingRule<AssistantSkillTriggerAttribute>()
+            .BindToTrigger(this.assistantskillTriggerBindingProvider);
 
         // OpenAI service input binding support (NOTE: This may be removed in a future version.)
         context.AddBindingRule<OpenAIServiceAttribute>().BindToInput(_ => this.service);
