@@ -48,6 +48,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Functions.Worker.Extensions
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CSharpIsolatedSamples", "samples\other\dotnet\csharp-ooproc\CSharpIsolatedSamples\CSharpIsolatedSamples.csproj", "{537FD9B3-1288-461B-BEFD-8DF323A50BF1}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "assistant", "assistant", "{2D012B0E-6946-4707-830C-F73AB5C7B37D}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AssistantSample", "samples\assistant\csharp-inproc\AssistantSample.csproj", "{A6A8CF51-CADB-4759-904F-961BD8C516D7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -86,6 +90,10 @@ Global
 		{537FD9B3-1288-461B-BEFD-8DF323A50BF1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{537FD9B3-1288-461B-BEFD-8DF323A50BF1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{537FD9B3-1288-461B-BEFD-8DF323A50BF1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A6A8CF51-CADB-4759-904F-961BD8C516D7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A6A8CF51-CADB-4759-904F-961BD8C516D7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A6A8CF51-CADB-4759-904F-961BD8C516D7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A6A8CF51-CADB-4759-904F-961BD8C516D7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -103,6 +111,8 @@ Global
 		{E6B8C0F5-9462-4A9C-AD6F-B34721BA0E51} = {86EAF0D2-9CE7-4537-A583-C29DA28A08F1}
 		{EBFED369-EBBB-49F8-B2F2-236AF3063271} = {7A80B95C-AD57-4057-AED0-48629B75874F}
 		{537FD9B3-1288-461B-BEFD-8DF323A50BF1} = {4B55F637-B067-43B4-B6FC-65171654315C}
+		{2D012B0E-6946-4707-830C-F73AB5C7B37D} = {865C9FB5-1043-47BE-B650-25A2B42030A3}
+		{A6A8CF51-CADB-4759-904F-961BD8C516D7} = {2D012B0E-6946-4707-830C-F73AB5C7B37D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {05A7A679-3A53-45B5-AE93-4313655E127D}

@@ -6,6 +6,9 @@ using OpenAI.Managers;
 using OpenAI.ObjectModels;
 using OpenAI.ObjectModels.RequestModels;
 using OpenAI.ObjectModels.ResponseModels;
+using OpenAITesting;
+
+await ChatCompletions.Run();
 
 OpenAIService openAiService = new(new OpenAiOptions()
 {
