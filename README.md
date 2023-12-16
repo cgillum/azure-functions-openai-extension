@@ -149,6 +149,8 @@ public class AssistantSkills
 }
 ```
 
+You can find samples with instructions [in the assistant samples directory](./samples/assistant/).
+
 ### Embeddings Generator
 
 OpenAI's [text embeddings](https://platform.openai.com/docs/guides/embeddings) measure the relatedness of text strings. Embeddings are commonly used for:
