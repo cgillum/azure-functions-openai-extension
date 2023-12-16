@@ -50,7 +50,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CSharpIsolatedSamples", "sa
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "assistant", "assistant", "{2D012B0E-6946-4707-830C-F73AB5C7B37D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AssistantSample", "samples\assistant\csharp-inproc\AssistantSample.csproj", "{A6A8CF51-CADB-4759-904F-961BD8C516D7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AssistantSample", "samples\assistant\csharp-inproc\AssistantSample.csproj", "{A6A8CF51-CADB-4759-904F-961BD8C516D7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
