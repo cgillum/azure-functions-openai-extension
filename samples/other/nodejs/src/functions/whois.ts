@@ -4,7 +4,7 @@ import { app, input } from "@azure/functions";
 const openAICompletionInput = input.generic({
     prompt: 'Who is {name}?',
     maxTokens: '100',
-    type: 'openAICompletion'
+    type: 'textCompletion'
 })
 
 app.http('whois', {
