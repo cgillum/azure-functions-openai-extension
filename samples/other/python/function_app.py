@@ -16,6 +16,7 @@ def whois(req: func.HttpRequest, response: str) -> func.HttpResponse:
 def generic_completion(req: func.HttpRequest, response: str) -> func.HttpResponse:
     response_json = json.loads(response)
     if not response_json["Successful"]:
-        error = response_json["Error"] or { "MessageObject": "OpenAI returned an unspecified error" }
+        error = response_json["Error"] or {
+            "MessageObject": "OpenAI returned an unspecified error"}
         return func.HttpResponse(json.dumps(error), status_code=500)
     return func.HttpResponse(response_json["Choices"][0]["Text"], status_code=200)
