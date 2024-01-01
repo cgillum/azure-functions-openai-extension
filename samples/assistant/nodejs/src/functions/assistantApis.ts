@@ -34,7 +34,7 @@ const chatBotPostOutput = output.generic({
     id: '{assistantId}',
     model: 'gpt-4'
 })
-app.http('PostUserResponse', {
+app.http('PostUserQuery', {
     methods: ['POST'],
     route: 'assistants/{assistantId}',
     authLevel: 'anonymous',
@@ -44,11 +44,7 @@ app.http('PostUserResponse', {
         if (!userMessage) {
             return { status: 400, bodyJson: { message: 'Request body is empty' } }
         }
-        const chatPostRequest = {
-            assistantId: request.params.assistantId,
-            userMessage: userMessage,
-        }
-        context.extraOutputs.set(chatBotPostOutput, chatPostRequest)
+        context.extraOutputs.set(chatBotPostOutput, { userMessage: userMessage })
         return { status: 202 }
     }
 })
