@@ -1,5 +1,7 @@
 # Azure Functions bindings for OpenAI's GPT engine
 
+**This repo has been moved to Microsoft official repository, visit the [Azure/azure-functions-openai-extension](https://github.com/Azure/azure-functions-openai-extension/) to learn more or make contributions.**
+
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Build](https://github.com/cgillum/azure-functions-openai-extension/actions/workflows/build.yml/badge.svg)](https://github.com/cgillum/azure-functions-openai-extension/actions/workflows/build.yml)
 
